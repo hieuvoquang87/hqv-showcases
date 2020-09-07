@@ -1,0 +1,60 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: AWS Deployment CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      DEPLOYMENT_BUCKET_NAME: 'hieuqvo'
+      
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: chrislennon/action-aws-cli@v1.1  
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - name: Show Environment Info
+      run: |
+        env
+        node -v
+        aws --version
+    
+    - name: Run Install
+      run: |
+        cd ${PWD}/webapp
+        yarn install
+    
+    - name: Run Unit-test
+      run: |
+        cd ${PWD}/webapp
+        yarn run test
+        
+    - name: Run Build
+      run: |
+        cd ${PWD}/webapp
+        yarn run build
+    
+    - name: Run Deployment
+      run: |
+        cd ${PWD}/webapp
+        ls -l
+        aws s3 cp s3://${PWD}/webapp/build s3://${DEPLOYMENT_BUCKET_NAME}/public --recursive
+        
