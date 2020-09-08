@@ -1,0 +1,19 @@
+{
+  "name": "hqv-showcases",
+  "version": "1.0.0",
+  "description": "Project Showcases",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://hieuvoquang87@github.com/hieuvoquang87/hqv-showcases.git"
+  },
+  "author": "Hieu Vo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hieuvoquang87/hqv-showcases/issues"
+  },
+  "homepage": "https://github.com/hieuvoquang87/hqv-showcases#readme"
+}
