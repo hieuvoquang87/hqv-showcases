@@ -11,7 +11,7 @@ export const getPokemons = () => async (dispatch) => {
   if(data) {
     const pokemonByIds = data?.results?.length ? data.results.reduce((acc, item) => {
       const pokemonId = getPokemonId(item)
-      acc[pokemonId] = {...item, id: pokemonId, isSaved: false};
+      acc[pokemonId] = {...item, id: pokemonId};
       return acc;
     }, {}): {}
     dispatch({

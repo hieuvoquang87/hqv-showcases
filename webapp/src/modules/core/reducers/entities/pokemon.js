@@ -17,7 +17,17 @@ const selectedPokemon = (state = null, action) => {
 
 const byId = (state = {}, action) => {
   switch(action.type) {
-    case UPDATE_POKEMON_LIST: return {...state, ...action.data};
+    case UPDATE_POKEMON_LIST: 
+      const newState = {...state}
+      const newPokemons = action.data
+      for(let i in newPokemons) {
+        if(newState[i]) {
+          newState[i] = {...newState[i], ...newPokemons[i]}
+        } else {
+          newState[i] = {...newPokemons[i]}
+        }
+      }
+      return newState;
     case 'SAVE_POKEMON': 
       const pokemonId = action?.data?.id
       if(pokemonId) {
