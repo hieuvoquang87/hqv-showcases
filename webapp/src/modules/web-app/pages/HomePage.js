@@ -28,8 +28,10 @@ const TileListGroup = styled.div`
   margin: auto;
 `
 
-export const HomePage = ({ onInit, onPokemonSelected, pokemons }) => {
+export const HomePage = ({ onInit, onPokemonSelected, onPokemonSaved, pokemons }) => {
   const [pokemonList, setPokemonList] = useState([])
+  const [showSavedList, setShowSavedList] = useState(false)
+
   const onSearchTextChanged = (e) => {
     const val = e.target.value;
     if(val && val.length > 1) {
@@ -46,7 +48,13 @@ export const HomePage = ({ onInit, onPokemonSelected, pokemons }) => {
   useEffect(() => {
     setPokemonList(Object.values(pokemons))
   }, [pokemons])
-
+  useEffect(() => {
+    if(showSavedList) {
+      setPokemonList(Object.values(pokemons).filter((item) => item.isSaved))
+    } else {
+      setPokemonList(Object.values(pokemons))
+    }
+  }, [pokemons, showSavedList])
   return (
     <PageContainer>
       <Group>
@@ -54,7 +62,7 @@ export const HomePage = ({ onInit, onPokemonSelected, pokemons }) => {
       </Group>
       <Group>
         <div style={{ margin: 'auto' }}> 
-          <ToogleButton leftText='All' leftValue='ALL' rightText='Saved' rightValue='SAVED'/>
+          <ToogleButton leftText='All' leftValue='ALL' rightText='Saved' rightValue='SAVED' onChange={(val) => setShowSavedList(val === 'SAVED')}/>
         </div>
       </Group>
       <SearchBoxGroup>
@@ -63,7 +71,7 @@ export const HomePage = ({ onInit, onPokemonSelected, pokemons }) => {
         </div>
       </SearchBoxGroup>
       <TileListGroup>
-        {pokemonList.map((item, idx) => (<PokemonTile key={idx} name={item.name} onClick={() => onPokemonSelected(item)}></PokemonTile>))}
+        {pokemonList.map((item, idx) => (<PokemonTile key={idx} pokemon={item} onShowDetailSelected={onPokemonSelected} onSaveSelected={onPokemonSaved}></PokemonTile>))}
       </TileListGroup>
     </PageContainer>
   )

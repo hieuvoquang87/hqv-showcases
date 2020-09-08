@@ -31,14 +31,10 @@ const mockSelectedPokemon = {
   ],
 };
 
-test("rendering page with back button", () => {
+test("rendering Detail Page", () => {
   const { getByText } = render(<DetailPage selectedPokemon={mockSelectedPokemon}/>);
   const backBtn = getByText(/Back/i);
   expect(backBtn).toBeInTheDocument();
-});
-
-test("rendering page with Pokemon detail", () => {
-  const { getByText } = render(<DetailPage selectedPokemon={mockSelectedPokemon}/>);
 
   const pokemonHeight = getByText(/7/i);
   expect(pokemonHeight).toBeInTheDocument();
@@ -49,3 +45,4 @@ test("rendering page with Pokemon detail", () => {
   const pokemonType = getByText(/grass/i);
   expect(pokemonType).toBeInTheDocument();
 });
+

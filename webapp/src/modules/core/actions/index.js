@@ -11,7 +11,7 @@ export const getPokemons = () => async (dispatch) => {
   if(data) {
     const pokemonByIds = data?.results?.length ? data.results.reduce((acc, item) => {
       const pokemonId = getPokemonId(item)
-      acc[pokemonId] = {...item, id: pokemonId};
+      acc[pokemonId] = {...item, id: pokemonId, isSaved: false};
       return acc;
     }, {}): {}
     dispatch({
@@ -19,6 +19,17 @@ export const getPokemons = () => async (dispatch) => {
       data: pokemonByIds
     })
   }
+}
+
+export const savePokemon = (pokemon) => async (dispatch) => {
+  const {id, isSaved } = pokemon;
+  dispatch({
+    type: 'SAVE_POKEMON',
+    data: {
+      id, 
+      isSaved: !isSaved
+    }
+  })
 }
 
 export const viewPokemonDetail = (pokemon) => async (dispatch) => {

@@ -11,7 +11,6 @@ export const getPokemonId = (data) => {
 export const getAllPokemon = async () => {
   try {
     const requestUrl = `${POKEAPI_BASE_URL}/pokemon?limit=151`;
-    console.log('requestUrl', requestUrl)
     const cachedResponseData = getItemWithKey(requestUrl)
     if(cachedResponseData) {
       return {

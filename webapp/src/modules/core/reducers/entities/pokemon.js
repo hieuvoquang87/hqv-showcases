@@ -18,6 +18,15 @@ const selectedPokemon = (state = null, action) => {
 const byId = (state = {}, action) => {
   switch(action.type) {
     case UPDATE_POKEMON_LIST: return {...state, ...action.data};
+    case 'SAVE_POKEMON': 
+      const pokemonId = action?.data?.id
+      if(pokemonId) {
+        const pokemon = state[pokemonId]
+        const newState = { ...state }
+        newState[pokemonId] = { ...pokemon, isSaved: action.data.isSaved}
+        return newState
+      }
+      return state
     default: return state;
   }
 }
