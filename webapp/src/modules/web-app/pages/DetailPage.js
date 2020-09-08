@@ -39,8 +39,7 @@ const ArtWorkImage = styled.img`
 
 `
 
-const DetailPage = ({ selectedPokemon, onBackSelected }) => {
-  console.log(selectedPokemon)
+export const DetailPage = ({ selectedPokemon, onBackSelected }) => {
   return (
     <PageContainer>
       <GroupContainer>

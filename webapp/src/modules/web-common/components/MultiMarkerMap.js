@@ -24,7 +24,6 @@ const SAN_DIEGO_CENTER = {
 }
 
 const MuliMarkerMap = ({ locations=[] }) => {
-  console.log(locations)
   const places = locations.map((place) => {
     const loc = place.split(',')
     return {

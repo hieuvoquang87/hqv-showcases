@@ -9,7 +9,7 @@ import ToogleButton from '../../web-common/components/ToggleButton'
 
 import PokemonTile from '../components/PokemonTile'
 
-const ToggleGroup = styled.div`
+const Group = styled.div`
   display: flex;
   height: 72px;
   width: 100%
@@ -28,7 +28,7 @@ const TileListGroup = styled.div`
   margin: auto;
 `
 
-const HomePage = ({ onInit, onPokemonSelected, pokemons }) => {
+export const HomePage = ({ onInit, onPokemonSelected, pokemons }) => {
   const [pokemonList, setPokemonList] = useState([])
   const onSearchTextChanged = (e) => {
     const val = e.target.value;
@@ -49,11 +49,14 @@ const HomePage = ({ onInit, onPokemonSelected, pokemons }) => {
 
   return (
     <PageContainer>
-      <ToggleGroup>
+      <Group>
+        <h1 style={{ margin: 'auto' }}>Pokedex</h1>
+      </Group>
+      <Group>
         <div style={{ margin: 'auto' }}> 
           <ToogleButton leftText='All' leftValue='ALL' rightText='Saved' rightValue='SAVED'/>
         </div>
-      </ToggleGroup>
+      </Group>
       <SearchBoxGroup>
         <div style={{ margin: 'auto' }}>
           <input onChange={onSearchTextChanged}></input>

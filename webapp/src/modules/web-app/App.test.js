@@ -2,9 +2,8 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('rendering page with title', () => {
   const { getByText } = render(<App />);
-  // const linkElement = getByText(/learn react/i);
-  // expect(linkElement).toBeInTheDocument();
-  expect(true).toBe(true)
+  const title = getByText(/Pokedex/i);
+  expect(title).toBeInTheDocument();
 });
