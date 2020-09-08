@@ -28,7 +28,7 @@ const TileListGroup = styled.div`
   margin: auto;
 `
 
-const HomePage = ({ onInit, pokemons }) => {
+const HomePage = ({ onInit, onPokemonSelected, pokemons }) => {
   const [pokemonList, setPokemonList] = useState([])
   const onSearchTextChanged = (e) => {
     const val = e.target.value;
@@ -41,12 +41,12 @@ const HomePage = ({ onInit, pokemons }) => {
       setPokemonList(Object.values(pokemons))
     }
   }
-  useEffect(() => {
-    onInit()
-  }, [])
+
+  useEffect(onInit, [])
   useEffect(() => {
     setPokemonList(Object.values(pokemons))
   }, [pokemons])
+
   return (
     <PageContainer>
       <ToggleGroup>
@@ -60,7 +60,7 @@ const HomePage = ({ onInit, pokemons }) => {
         </div>
       </SearchBoxGroup>
       <TileListGroup>
-        {pokemonList.map((item, idx) => (<PokemonTile key={idx} name={item.name}></PokemonTile>))}
+        {pokemonList.map((item, idx) => (<PokemonTile key={idx} name={item.name} onClick={() => onPokemonSelected(item)}></PokemonTile>))}
       </TileListGroup>
     </PageContainer>
   )

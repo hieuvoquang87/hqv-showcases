@@ -11,7 +11,6 @@ const mapStateToProps = ({ navigation }) => {
 }
 
 const Routes = ({ navigation: { currentPage } }) => {
-  console.log('render Route', currentPage)
   switch(currentPage) {
     case 'HOME_PAGE': return (<HomePage />)
     case 'DETAIL_PAGE': return (<DetailPage />)

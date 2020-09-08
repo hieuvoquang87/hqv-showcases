@@ -11,11 +11,13 @@ const StyledTile = styled.div`
   text-align: center;
   justify-content: center;
   align-items: center;
+  line-height: 48px;
+  text-align: center;
 `
 
-const PokemonTile = ({ name }) => {
+const PokemonTile = ({ name, ...props }) => {
   return (
-    <StyledTile>
+    <StyledTile {...props}>
       {name}
     </StyledTile>
   )

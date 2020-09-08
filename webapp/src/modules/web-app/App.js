@@ -1,5 +1,5 @@
 import React from 'react';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import { ThemeProvider } from 'emotion-theming';
 
 import configureStore from '../../modules/core/store';
