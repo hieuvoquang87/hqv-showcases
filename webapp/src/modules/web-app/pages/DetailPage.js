@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { mapStateToProps, mapDispatchToProps } from '../containers/DetailPage'
 import PageContainer from '../../web-common/components/PageContainer'
-
+import MuliMarkerMap from '../../web-common/components/MultiMarkerMap'
 
 const BackButton = styled.button`
   height: 36px;
@@ -39,8 +39,6 @@ const ArtWorkImage = styled.img`
 
 `
 
-
-
 const DetailPage = ({ selectedPokemon, onBackSelected }) => {
   console.log(selectedPokemon)
   return (
@@ -55,11 +53,11 @@ const DetailPage = ({ selectedPokemon, onBackSelected }) => {
           </ContentBlock>
           <ContentBlock>Height: {selectedPokemon.height}</ContentBlock>
           <ContentBlock>Weight: {selectedPokemon.weight}</ContentBlock>
-          <ContentBlock>Types: {selectedPokemon?.types?.map((item) => (<ContentBlock>{item.type.name}</ContentBlock>))}</ContentBlock>
+          <ContentBlock>Types: {selectedPokemon?.types?.map((item, idx) => (<ContentBlock key={idx}>{item.type.name}</ContentBlock>))}</ContentBlock>
           <ContentBlock>Description: {selectedPokemon.description}</ContentBlock>
         </InfoContainer>
         <InfoContainer>
-          Map
+          <MuliMarkerMap locations={selectedPokemon.locations}/>
         </InfoContainer>
       </Container>
     </PageContainer>

@@ -52,5 +52,5 @@ jobs:
       run: |
         cd ${PWD}/webapp
         ls -l
-        aws s3 cp ${PWD}/webapp/build s3://${DEPLOYMENT_BUCKET_NAME}/public --recursive
+        aws s3 cp ./build s3://${DEPLOYMENT_BUCKET_NAME}/public --recursive
         
