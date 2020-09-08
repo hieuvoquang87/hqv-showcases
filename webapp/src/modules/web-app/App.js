@@ -5,8 +5,6 @@ import { ThemeProvider } from 'emotion-theming';
 import configureStore from '../../modules/core/store';
 import Routes from './Routes';
 
-import './App.css';
-
 const theme = {
   primaryColor: '1d2d50',
   secondaryColor: '133b5c',

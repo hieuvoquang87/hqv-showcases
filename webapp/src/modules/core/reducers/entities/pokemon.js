@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import {
   SELECT_POKEMON,
   UPDATE_POKEMON_LOCATION,
-  GET_ALL_POKEMON 
+  UPDATE_POKEMON_LIST 
 } from '../../action-types'
 
 const selectedPokemon = (state = null, action) => {
@@ -10,7 +10,10 @@ const selectedPokemon = (state = null, action) => {
 }
 
 const byId = (state = {}, action) => {
-  return state
+  switch(action.type) {
+    case UPDATE_POKEMON_LIST: return {...state, ...action.data};
+    default: return state;
+  }
 }
 
 export default combineReducers({
